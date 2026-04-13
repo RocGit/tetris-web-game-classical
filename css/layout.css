@@ -1,0 +1,249 @@
+/* ============================================
+ * layout.css - 页面布局与响应式适配
+ * 游戏主体三栏布局：左侧信息 | 中间面板 | 右侧预览
+ * ============================================ */
+
+/* --- 游戏容器 --- */
+#game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 16px;
+    gap: 20px;
+}
+
+/* --- 游戏主体 --- */
+#game-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* --- 左侧面板（分数/等级） --- */
+#left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 140px;
+}
+
+/* --- 中间游戏面板 --- */
+#board-wrapper {
+    position: relative;
+    border: 2px solid var(--board-border);
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(100, 100, 255, 0.15),
+                inset 0 0 20px rgba(100, 100, 255, 0.05);
+    background: var(--board-bg);
+}
+
+#game-canvas {
+    display: block;
+}
+
+/* --- 右侧面板（预览/控制） --- */
+#right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 140px;
+}
+
+/* --- 面板标题 --- */
+.panel-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+/* --- 分数显示 --- */
+.stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-accent);
+    text-shadow: 0 0 10px rgba(0, 240, 240, 0.5);
+    font-variant-numeric: tabular-nums;
+}
+
+/* --- 预览画布 --- */
+#preview-canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+/* --- 按钮 --- */
+.game-btn {
+    width: 100%;
+    padding: 10px 16px;
+    background: var(--btn-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.game-btn:hover {
+    background: var(--btn-hover);
+    box-shadow: 0 0 15px rgba(100, 100, 255, 0.3);
+}
+
+.game-btn:active {
+    transform: scale(0.97);
+}
+
+/* --- 游戏覆盖层（开始/暂停/结束） --- */
+#game-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(5, 5, 20, 0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 10;
+    border-radius: 4px;
+}
+
+#game-overlay.hidden {
+    display: none;
+}
+
+#overlay-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-shadow: 0 0 20px rgba(0, 240, 240, 0.6);
+}
+
+#overlay-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+#overlay-btn {
+    padding: 12px 32px;
+    font-size: 16px;
+}
+
+/* --- 触屏控制按钮 --- */
+#touch-controls {
+    display: none;
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 8px;
+    z-index: 20;
+}
+
+.touch-btn {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(40, 40, 100, 0.5);
+    border: 1px solid rgba(100, 100, 200, 0.3);
+    border-radius: 12px;
+    font-size: 22px;
+    color: var(--text-primary);
+    transition: background 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.touch-btn:active {
+    background: rgba(60, 60, 140, 0.8);
+    box-shadow: 0 0 15px rgba(100, 100, 255, 0.4);
+}
+
+#touch-controls .touch-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* --- 响应式布局 --- */
+
+/* 平板竖屏 */
+@media (max-width: 768px) {
+    #game-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    #left-panel, #right-panel {
+        flex-direction: row;
+        width: auto;
+        gap: 12px;
+    }
+
+    .panel {
+        padding: 10px 14px;
+    }
+
+    .stat-value {
+        font-size: 18px;
+    }
+}
+
+/* 手机竖屏 */
+@media (max-width: 480px) {
+    #game-container {
+        padding: 8px;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 8px;
+    }
+
+    #left-panel, #right-panel {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .panel {
+        padding: 8px 10px;
+    }
+
+    .panel-title {
+        font-size: 10px;
+    }
+
+    .stat-value {
+        font-size: 16px;
+    }
+
+    #touch-controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .touch-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}
+
+/* 桌面端始终隐藏触屏控制 */
+@media (hover: hover) and (pointer: fine) {
+    #touch-controls {
+        display: none !important;
+    }
+}

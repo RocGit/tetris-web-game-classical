@@ -1,0 +1,85 @@
+/* ============================================
+ * neon-theme.css - 霓虹主题
+ * 定义全局颜色变量、发光效果、深色背景
+ * ============================================ */
+
+:root {
+    /* --- 背景色 --- */
+    --bg-primary: #0a0a1a;
+    --bg-secondary: #12122a;
+    --bg-panel: rgba(15, 15, 40, 0.85);
+
+    /* --- 方块颜色（霓虹渐变） --- */
+    --color-I: #00f0f0;
+    --color-O: #f0f000;
+    --color-T: #a000f0;
+    --color-S: #00f000;
+    --color-Z: #f00000;
+    --color-J: #0000f0;
+    --color-L: #f0a000;
+
+    /* --- 方块发光色 --- */
+    --glow-I: 0, 240, 240;
+    --glow-O: 240, 240, 0;
+    --glow-T: 160, 0, 240;
+    --glow-S: 0, 240, 0;
+    --glow-Z: 240, 0, 0;
+    --glow-J: 50, 50, 255;
+    --glow-L: 240, 160, 0;
+
+    /* --- 文字颜色 --- */
+    --text-primary: #e0e0ff;
+    --text-secondary: #8888aa;
+    --text-accent: #00f0f0;
+
+    /* --- 边框与网格 --- */
+    --border-color: rgba(100, 100, 200, 0.3);
+    --grid-line: rgba(60, 60, 120, 0.4);
+
+    /* --- 霓虹发光效果 --- */
+    --neon-glow-sm: 0 0 5px currentColor, 0 0 10px currentColor;
+    --neon-glow-md: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
+    --neon-glow-lg: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 80px currentColor;
+
+    /* --- 游戏面板 --- */
+    --board-bg: rgba(5, 5, 20, 0.9);
+    --board-border: rgba(100, 100, 255, 0.4);
+
+    /* --- UI 组件 --- */
+    --panel-bg: rgba(20, 20, 50, 0.8);
+    --panel-border: rgba(80, 80, 180, 0.3);
+    --btn-bg: rgba(40, 40, 100, 0.6);
+    --btn-hover: rgba(60, 60, 140, 0.8);
+}
+
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* --- 霓虹文字工具类 --- */
+.neon-text {
+    text-shadow: var(--neon-glow-sm);
+}
+
+.neon-text-accent {
+    color: var(--text-accent);
+    text-shadow: var(--neon-glow-sm);
+}
+
+/* --- 霓虹边框工具类 --- */
+.neon-border {
+    border: 1px solid var(--board-border);
+    box-shadow: 0 0 10px rgba(100, 100, 255, 0.2),
+                inset 0 0 10px rgba(100, 100, 255, 0.1);
+}
+
+/* --- 面板通用样式 --- */
+.panel {
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    padding: 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}

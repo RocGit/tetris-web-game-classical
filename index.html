@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>俄罗斯方块 - Neon Tetris</title>
+
+    <!-- CSS 加载顺序：reset → 主题 → 布局 → 动画 -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/neon-theme.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="game-wrapper">
+            <!-- 左侧面板：分数与等级 -->
+            <div id="left-panel">
+                <div class="panel">
+                    <div class="panel-title">分数</div>
+                    <div class="stat-value" id="score-value">0</div>
+                </div>
+                <div class="panel">
+                    <div class="panel-title">等级</div>
+                    <div class="stat-value" id="level-value">1</div>
+                </div>
+                <div class="panel">
+                    <div class="panel-title">行数</div>
+                    <div class="stat-value" id="lines-value">0</div>
+                </div>
+            </div>
+
+            <!-- 中间：游戏面板 -->
+            <div id="board-wrapper">
+                <canvas id="game-canvas"></canvas>
+
+                <!-- 游戏覆盖层（开始/暂停/结束） -->
+                <div id="game-overlay">
+                    <div id="overlay-title" class="neon-text-accent">俄罗斯方块</div>
+                    <div id="overlay-subtitle">按下方按钮或空格键开始</div>
+                    <button id="overlay-btn" class="game-btn neon-text">开始游戏</button>
+                </div>
+            </div>
+
+            <!-- 右侧面板：预览与控制 -->
+            <div id="right-panel">
+                <div class="panel">
+                    <div class="panel-title">下一个</div>
+                    <canvas id="preview-canvas"></canvas>
+                </div>
+                <button class="game-btn neon-text" onclick="Game.togglePause()">暂停</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 触屏控制按钮（移动端显示） -->
+    <div id="touch-controls">
+        <div class="touch-row">
+            <button class="touch-btn" id="touch-rotate">↻</button>
+        </div>
+        <div class="touch-row">
+            <button class="touch-btn" id="touch-left">◀</button>
+            <button class="touch-btn" id="touch-down">▼</button>
+            <button class="touch-btn" id="touch-right">▶</button>
+        </div>
+        <div class="touch-row">
+            <button class="touch-btn" id="touch-drop">⏬</button>
+            <button class="touch-btn" id="touch-pause">⏸</button>
+        </div>
+    </div>
+
+    <!-- JS 加载顺序：无依赖 → 基础 → 功能 → 控制器 → 入口 -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/piece.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/score.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
